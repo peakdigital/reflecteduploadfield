@@ -63,8 +63,14 @@ class FieldReflectedUpload extends FieldUpload {
     }
 
     public function checkPostFieldData($data , &$message , $entry_id = NULL) {
-        extension_reflecteduploadfield::registerField($this);
+        
+        $driver = Symphony::ExtensionManager()->create('reflecteduploadfield');
+        $driver->registerField($this);
+
         return self::__OK__;
+        
+     //   extension_reflecteduploadfield::registerField($this);
+     //   return self::__OK__;
     }
 
     public function processRawFieldData($data, &$status, &$message=null, $simulate = false, $entry_id = NULL) {
